@@ -47,7 +47,6 @@ displayControl();
 const centerPlay = document.getElementById("play-button");
 function playOrPauseVideo(){
     const play = document.getElementById("play");
-   
     if(!isPlaying){
         video.play();
         play.src = "./image/play-icon.svg";
@@ -79,6 +78,17 @@ video.addEventListener("click", () => {
     }
 })
 
+video.addEventListener("play", () => {
+    setTimeout(() => {
+        videoControl.classList.add("hidden"); 
+    }, 5000);
+});
+
+video.addEventListener("mouseenter", () => {
+    videoControl.classList.remove("hidden");
+});
+
+
 let startTime = null;
 
 const progressBarStatus = document.getElementById("progress-status");
@@ -100,16 +110,6 @@ function updateProgressBar() {
     }
 }
 
-// function updateProgressBarOnClick(event) {
-//     let progressBarWidth = progressContainer.offsetWidth;
-//     let offsetX = event.offsetX;
-
-//     let progressPercent = (offsetX / progressBarWidth) * 100;
-//     progressBarStatus.style.width = progressPercent + "%";
-
-//     let newTime = (progressPercent / 100) * video.duration;
-//     video.currentTime = newTime;
-// }
 
 progressBar.addEventListener("mousedown", (event) => {
     isDragging = true;
